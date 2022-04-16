@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/food-site/static/css/main.df1fbbb9.css",
+    "main.js": "/food-site/static/js/main.02cf1658.js",
+    "static/media/rollingDisplayPic3.JPG": "/food-site/static/media/rollingDisplayPic3.15a92c34141d4c4343c6.JPG",
+    "static/media/rollingDisplayPic2.JPG": "/food-site/static/media/rollingDisplayPic2.f83dccb188423b6f712d.JPG",
+    "static/media/rollingDisplayPic11.JPEG": "/food-site/static/media/rollingDisplayPic11.3063961047d37d9cb20d.JPEG",
+    "static/media/rollingDisplayPic12.JPEG": "/food-site/static/media/rollingDisplayPic12.7dd09a344cee1dd74641.JPEG",
+    "static/media/rollingDisplayPic10.JPEG": "/food-site/static/media/rollingDisplayPic10.7a9dff1c936a6c395da1.JPEG",
+    "static/media/rollingDisplayPic9.JPEG": "/food-site/static/media/rollingDisplayPic9.e1f64ed794dd0d3d30d2.JPEG",
+    "static/media/rollingDisplayPic4.JPG": "/food-site/static/media/rollingDisplayPic4.0e0547f761531c1aceda.JPG",
+    "static/media/rollingDisplayPic1.jpeg": "/food-site/static/media/rollingDisplayPic1.f62ebb776d0feba34067.jpeg",
+    "static/media/rollingDisplayPic8.JPG": "/food-site/static/media/rollingDisplayPic8.1adbbf53b95066cadba1.JPG",
+    "static/media/rollingDisplayPic7.JPG": "/food-site/static/media/rollingDisplayPic7.d30968cc3d1d74cef931.JPG",
+    "static/media/rollingDisplayPic5.JPG": "/food-site/static/media/rollingDisplayPic5.aa003d256624fdcdc091.JPG",
+    "static/media/menuLogoEdited.png": "/food-site/static/media/menuLogoEdited.391dacd554c9bcf7fb24.png",
+    "index.html": "/food-site/index.html",
+    "main.df1fbbb9.css.map": "/food-site/static/css/main.df1fbbb9.css.map",
+    "main.02cf1658.js.map": "/food-site/static/js/main.02cf1658.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df1fbbb9.css",
+    "static/js/main.02cf1658.js"
+  ]
+}
