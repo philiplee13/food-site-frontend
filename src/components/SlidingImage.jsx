@@ -12,6 +12,7 @@ import rollingDisplayPic10 from "../images/rollingDisplayPic10.JPEG";
 import rollingDisplayPic11 from "../images/rollingDisplayPic11.JPEG";
 import rollingDisplayPic12 from "../images/rollingDisplayPic12.JPEG";
 import rollingDisplayPic4 from "../images/rollingDisplayPic4.JPG";
+import rollingDisplayPic13 from "../images/rollingDisplayPic13.jpeg";
 
 
 function SlidingImage() {
@@ -93,6 +94,13 @@ function SlidingImage() {
           <img
             src={rollingDisplayPic4}
             alt="pic4"
+          />
+          <p className="legend"></p>
+        </div>
+        <div>
+          <img
+            src={rollingDisplayPic13}
+            alt="pic13"
           />
           <p className="legend"></p>
         </div>
