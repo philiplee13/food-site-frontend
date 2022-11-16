@@ -520,7 +520,7 @@ const chickenData = [
     {
         id: 16,
         name: "Mongolian Chicken",
-        price: "$8.75"
+        price: "$9.05"
     },
     {
         id: 17,
