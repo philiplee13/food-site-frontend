@@ -1,45 +1,29 @@
 {
-  "homepage": "http://www.dragonlitedeli.net",
-  "name": "dragonlitedeli",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-responsive-carousel": "^3.2.23",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "dragonlitedeli-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server && node index.js",
+    "client": "cd client && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philiplee13/food-site.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philiplee13/food-site/issues"
   },
-  "devDependencies": {
-    "gh-pages": "^3.2.3"
-  }
+  "homepage": "https://github.com/philiplee13/food-site#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.216.0",
+    "aws-sdk": "^2.1261.0",
+    "concurrently": "^7.6.0",
+    "express": "^4.18.2"
+  },
+  "type": "module"
 }

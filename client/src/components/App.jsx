@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import createComboPlates from "./ComboPlates";
 import createFamilyDinner from "./FamilyDinner";
 import createSingleItems from "./SingleItem";
+import LoginPage from "./LoginPage";
 
 // data imports
 import comboPlatesForOneData, {
