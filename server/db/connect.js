@@ -1,5 +1,5 @@
 /**
- * This file handles the db connection
+ * This file handles the db connection and creates initial tables
  */
 
 import pg from "pg";
@@ -21,19 +21,20 @@ export const connect = () => {
   }
 };
 
-export const disconnect = (pool) => {
-  pool.end();
+export const disconnect = async (pool) => {
+  await pool.end();
   console.log("Ending db connection");
 };
 
 
-export const createSingleItemTable = (pool) => {
+export const createSingleItemTable =  async (pool) => {
   try {
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS single_item
       (
         id serial primary key, 
-        name varchar(250), 
+        name varchar(250),
+        category varchar(250),
         price numeric (3,2), 
         spicy boolean
         )`
@@ -49,13 +50,14 @@ export const createSingleItemTable = (pool) => {
   }
 };
 
-export const createComboItemTable = (pool) => {
+export const createComboItemTable = async (pool) => {
   try {
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS combo_item
       (
         id serial primary key, 
         name varchar(250), 
+        category varchar(250),
         price numeric (3,2), 
         spicy boolean, 
         items text[], 
@@ -69,3 +71,14 @@ export const createComboItemTable = (pool) => {
     return;
   }
 };
+
+export const dropTable = async (pool, tableName) => {
+  try {
+    await pool.query(`DROP TABLE IF EXISTS ${tableName}`);
+    console.log("Dropped table successfully");
+    return;
+  } catch (error) {
+    console.log("Error happened when dropping table", tableName, error);
+    return;
+  }
+}
