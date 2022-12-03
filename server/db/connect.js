@@ -35,7 +35,7 @@ export const createSingleItemTable =  async (pool) => {
         id serial primary key, 
         name varchar(250),
         category varchar(250),
-        price numeric (3,2), 
+        price numeric (5,2), 
         spicy boolean
         )`
     );
@@ -58,7 +58,7 @@ export const createComboItemTable = async (pool) => {
         id serial primary key, 
         name varchar(250), 
         category varchar(250),
-        price numeric (3,2), 
+        price numeric (5,2), 
         spicy boolean, 
         items text[], 
         extras jsonb
@@ -67,7 +67,7 @@ export const createComboItemTable = async (pool) => {
     console.log("Created Combo Item Table Successfully");
     return;
   } catch (error) {
-    console.log("Error happened when trying to create combo item table");
+    console.log("Error happened when trying to create combo item table", error);
     return;
   }
 };
