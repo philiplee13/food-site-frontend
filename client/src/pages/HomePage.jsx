@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import createComboPlates from "./ComboPlates";
-import createFamilyDinner from "./FamilyDinner";
-import createSingleItems from "./SingleItem";
-import LoginPage from "./LoginPage";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import createComboPlates from "../components/ComboPlates";
+import createFamilyDinner from "../components/FamilyDinner";
+import createSingleItems from "../components/SingleItem";
 
 // data imports
 import comboPlatesForOneData, {
@@ -24,7 +23,7 @@ import comboPlatesForOneData, {
   veggieData,
 } from "../data";
 
-function App() {
+export default function HomePage() {
   /*
     These will be all the states for the app
     There's defenitely a better way to do this
@@ -400,5 +399,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
