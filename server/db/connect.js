@@ -1,75 +1,84 @@
 /**
- * This file handles the db connection
+ * This file handles the db connection and creates initial tables
  */
 
-import {
-  DynamoDBClient,
-  CreateTableCommand,
-  ListTablesCommand,
-} from "@aws-sdk/client-dynamodb";
+import pg from "pg";
+import dotenv from "dotenv";
 
-import aws from "aws-sdk";
+dotenv.config();
+const { Pool } = pg;
+const connectionString = process.env.DATABASE_URL;
 
-const dynamoDBClient = new DynamoDBClient({
-  region: aws.config.credentials.region,
-});
-const tableParams = {
-  AttributeDefinitions: [
-    {
-      AttributeName: "Id",
-      AttributeType: "N",
-    },
-  ],
-  KeySchema: [
-    {
-      AttributeName: "Id",
-      KeyType: "HASH",
-    },
-  ],
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
-  },
-  TableName: "dragonlitedeli-table",
-  StreamSpecification: {
-    StreamEnabled: false,
-  },
-};
-
-export const createTable = async () => {
-  if (!getTable()) {
-    try {
-      const data = await dynamoDBClient.send(
-        new CreateTableCommand(tableParams)
-      );
-      console.log("Table was created");
-      return data;
-    } catch (err) {
-      console.log("Error happened when creating table", err);
-      return;
-    }
+export const connect = () => {
+  try {
+    const pool = new Pool({
+      connectionString,
+    });
+    console.log("Successfully connected");
+    return pool;
+  } catch (error) {
+    console.log("Error when trying to connect", error);
   }
 };
 
-export const getCredentials = () => {
-  aws.config.getCredentials((err) => {
-    if (err) {
-      console.log("error happened while getting credentials", err.stack);
-    } else {
-      console.log("Credentials have been set");
-      return;
-    }
-  });
+export const disconnect = async (pool) => {
+  await pool.end();
+  console.log("Ending db connection");
 };
 
-const getTable = async () => {
-  const tables = new ListTablesCommand("dragonlitedeli-table");
-  const response = await dynamoDBClient.send(tables);
-  if (response.TableNames.length !== 0) {
-    console.log("tables were already created", response);
-    return false;
-  } else {
-    console.log("no tables were present");
-    return true;
+
+export const createSingleItemTable =  async (pool) => {
+  try {
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS single_item
+      (
+        id serial primary key, 
+        name varchar(250),
+        category varchar(250),
+        price numeric (19,4), 
+        spicy boolean
+        )`
+    );
+    console.log("Created table successfully");
+    return;
+  } catch (error) {
+    console.log(
+      "Error happened when trying to create single item table",
+      error
+    );
+    return;
   }
 };
+
+export const createComboItemTable = async (pool) => {
+  try {
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS combo_item
+      (
+        id serial primary key, 
+        name varchar(250), 
+        category varchar(250),
+        price numeric (19,4), 
+        spicy boolean, 
+        items text[], 
+        extras jsonb
+        )`
+    );
+    console.log("Created Combo Item Table Successfully");
+    return;
+  } catch (error) {
+    console.log("Error happened when trying to create combo item table", error);
+    return;
+  }
+};
+
+export const dropTable = async (pool, tableName) => {
+  try {
+    await pool.query(`DROP TABLE IF EXISTS ${tableName}`);
+    console.log("Dropped table successfully");
+    return;
+  } catch (error) {
+    console.log("Error happened when dropping table", tableName, error);
+    return;
+  }
+}
