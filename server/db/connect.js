@@ -35,7 +35,7 @@ export const createSingleItemTable =  async (pool) => {
         id serial primary key, 
         name varchar(250),
         category varchar(250),
-        price numeric (5,2), 
+        price numeric (19,4), 
         spicy boolean
         )`
     );
@@ -58,7 +58,7 @@ export const createComboItemTable = async (pool) => {
         id serial primary key, 
         name varchar(250), 
         category varchar(250),
-        price numeric (5,2), 
+        price numeric (19,4), 
         spicy boolean, 
         items text[], 
         extras jsonb

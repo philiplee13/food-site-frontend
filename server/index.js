@@ -14,8 +14,9 @@ import {
   getAllComboMenuItems,
   getSingleComboMenuItems,
   insertComboMenuItem,
-  updateComboMenuItem,
-  deleteComboMenuItem
+  deleteComboMenuItem,
+  updateComboMenuItemWithExtras,
+  updateComboMenuItemWithoutExtras
 } from "./db/queries.js";
 import express from "express";
 
@@ -97,6 +98,39 @@ const comboItemTwo = {
     ],
   };
 
+  const updatedComboItemTwo = {
+    name: "Cantonese Dinner for 2",
+    category: "Family Dinner",
+    price: 50.50,
+    spicy: true,
+    items: [
+      "Fried Prawns (8)",
+      "Sweet and Sour Pork",
+      "B.B.Q. Pork Fried Rice",
+      "B.B.Q. Pork Chow Mein",
+    ],
+    extras: [
+      {
+        "id": 1,
+        "people": 3,
+        "price": 98.90,
+        "item": "Garlic Fried Chicken",
+      },
+      {
+        "id": 2,
+        "people": 4,
+        "price": 55.50,
+        "item": "Broccoli Beef",
+      },
+      {
+        "id": 3,
+        "people": 5,
+        "price": 65.55,
+        "item": "Shrimps with Chop Suey",
+      },
+    ],
+  };
+
 // const pool = connect();
 // await createSingleItemTable(pool);
 // await createComboItemTable(pool);
@@ -109,9 +143,12 @@ const comboItemTwo = {
 // await insertComboMenuItem(pool, comboItemOne);
 // await insertComboMenuItem(pool, comboItemTwo);
 // const singleItemQuery = await getSingleComboMenuItems(pool, "Option One");
+// const singleItemQuery = await getSingleComboMenuItems(pool, "Cantonese Dinner for 2");
 // console.log("result from query is", singleItemQuery);
-// await getSingleComboMenuItems(pool, "Cantonese Dinner for 2");
-// await updateComboMenuItem(pool, updatedComboItemOne, singleItemQuery.id);
+// const comboItemQuery = await getSingleComboMenuItems(pool, "Cantonese Dinner for 2");
+// console.log("result from query is ", comboItemQuery)
+// await updateComboMenuItemWithoutExtras(pool, updatedComboItemOne, singleItemQuery.id);
+// await updateComboMenuItemWithExtras(pool, updatedComboItemTwo, comboItemQuery.id);
 // await deleteComboMenuItem(pool, singleItemQuery.id)
 // await getAllComboMenuItems(pool)
 // dropTable(pool, "single_item")

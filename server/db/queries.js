@@ -1,11 +1,3 @@
-/**
- * This file will handle the queries for dynamodb
- * GET
- * PUT
- * POST
- * DELETE
- */
-
 export const getAllSingleMenuItems = async (pool) => {
   try {
     const results = await pool.query(`SELECT * FROM single_item`);
@@ -104,6 +96,7 @@ export const getSingleComboMenuItems = async (pool, itemName) => {
     );
     console.log("Got single item from combo menu");
     console.log(result["rows"]);
+    console.log("extras are", result["rows"][0]["extras"]);
     return result["rows"][0];
   } catch (error) {
     console.log("Error happened when trying to retrieve", itemName, error);
@@ -132,27 +125,57 @@ export const insertComboMenuItem = async (pool, itemParams) => {
     return false;
   }
 };
-export const updateComboMenuItem =  async (pool, updateItemParams, itemId) => {
-    try {
-        await pool.query(
-          `UPDATE combo_item SET name = $1, category = $2, price = $3, spicy = $4, items = $5, extras = $6 WHERE id = $7`,
-          [
-            updateItemParams.name,
-            updateItemParams.category,
-            updateItemParams.price,
-            updateItemParams.spicy,
-            updateItemParams.items,
-            updateItemParams.extras,
-            itemId,
-          ]
-        );
-        console.log("Updated item successfully");
-        return true;
-      } catch (error) {
-        console.log("Error happened when trying to update item...", error);
-        return false;
-      }
+export const updateComboMenuItemWithoutExtras = async (
+  pool,
+  updateItemParams,
+  itemId
+) => {
+  try {
+    await pool.query(
+      `UPDATE combo_item SET name = $1, category = $2, price = $3, spicy = $4, items = $5 WHERE id = $7`,
+      [
+        updateItemParams.name,
+        updateItemParams.category,
+        updateItemParams.price,
+        updateItemParams.spicy,
+        updateItemParams.items,
+        itemId,
+      ]
+    );
+    console.log("Updated item successfully");
+    return true;
+  } catch (error) {
+    console.log("Error happened when trying to update item...", error);
+    return false;
+  }
 };
+
+export const updateComboMenuItemWithExtras = async (
+  pool,
+  updateItemParams,
+  itemId
+) => {
+  try {
+    await pool.query(
+      `UPDATE combo_item SET name = $1, category = $2, price = $3, spicy = $4, items = $5, extras = $6 WHERE id = $7`,
+      [
+        updateItemParams.name,
+        updateItemParams.category,
+        updateItemParams.price,
+        updateItemParams.spicy,
+        updateItemParams.items,
+        JSON.stringify(updateItemParams.extras),
+        itemId,
+      ]
+    );
+    console.log("Updated item successfully");
+    return true;
+  } catch (error) {
+    console.log("Error happened when trying to update item...", error);
+    return false;
+  }
+};
+
 export const deleteComboMenuItem = async (pool, itemId) => {
   try {
     await pool.query(`DELETE FROM combo_item WHERE id = $1`, [itemId]);
