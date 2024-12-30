@@ -65,6 +65,7 @@ function createFamilyDinner(data) {
         })}
         spicy={data.spicy}
       />
+      <div>Each additional Person ${data.additional}</div>
     </div>
   );
 }
